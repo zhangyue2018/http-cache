@@ -13,7 +13,10 @@ const server = http.createServer((request, resp) => {
     // 设置强缓存，缓存时间10s
     resp.setHeader('Expires', expires);
 
-    
+    // http/1.1设置强缓存
+    // 会忽略Expires的设置
+    resp.setHeader('Cache-Control', 'max-age=40');
+
 
     const html = fs.readFileSync('./dist/index.html', 'utf-8');
     resp.end(html);
