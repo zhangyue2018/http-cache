@@ -16,7 +16,9 @@ const server = http.createServer((request, resp) => {
 
     // // http/1.1设置强缓存
     // // 会忽略Expires的设置
-    // resp.setHeader('Cache-Control', 'max-age=40');
+    resp.setHeader('Cache-Control', 'max-age=60');
+    // resp.setHeader('Cache-Control', 'no-store');
+    // resp.setHeader('Cache-Control', 'no-cache');
 
     // http/1.0设置协商缓存---etag/if-none-match
     const buffer = fs.readFileSync('./dist/index.html'); // 二进制文件流

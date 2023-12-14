@@ -7,5 +7,40 @@
 </head>
 <body>
     <div>http缓存策略--template</div>
+    <button onclick="click1()">请求1</button>
+    <button onclick="click2()">请求2</button>
+    <button onclick="click3()">请求3</button>
+    <script>
+        function click1() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'http://localhost:8090');
+            xhr.setRequestHeader('Cache-Control', 'max-age=0');
+            xhr.send();
+            xhr.onreadystatechange = function() {
+                if(xhr.readyState == 4) console.log('响应返回1');
+            }
+        }
+
+        function click2() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'http://localhost:8090');
+            xhr.setRequestHeader('Cache-Control', 'no-cache');
+            xhr.send();
+            xhr.onreadystatechange = function() {
+                if(xhr.readyState == 4) console.log('响应返回2');
+            }
+        }
+
+        function click3() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'http://localhost:8090');
+            // xhr.setRequestHeader('Cache-Control', 'no-cache');
+            xhr.send();
+            xhr.onreadystatechange = function() {
+                if(xhr.readyState == 4) console.log('响应返回3');
+            }
+        }
+        
+    </script>
 </body>
 </html>
